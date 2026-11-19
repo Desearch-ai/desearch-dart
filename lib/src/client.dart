@@ -110,6 +110,11 @@ class Desearch {
         )) {
       throw const DesearchException('Missing or unexpected path parameters.');
     }
+    if (pathParameters.values.any((value) => value == '.' || value == '..')) {
+      throw const DesearchException(
+        'Path parameters must not be dot segments.',
+      );
+    }
     if (operation.requiredQuery.any((p) => query[p] == null)) {
       throw const DesearchException('Missing required query parameters.');
     }

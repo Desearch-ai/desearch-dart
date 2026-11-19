@@ -53,7 +53,7 @@ The pinned schema generates 91 operations. See [the method list](tool/OPERATIONS
 final response = await client.webSearch(query: {'query': 'Dart SDK', 'num': 10});
 ```
 
-JSON body fields retain the API's snake_case spelling. Required body, query and path presence is checked locally; field types, enums and body field validation remain the API's responsibility. Path values are encoded as single segments. Query nulls are omitted, arrays use repeated parameters unless the schema specifies comma separation, and scalars accept strings, numbers and booleans.
+JSON body fields retain the API's snake_case spelling. Required body, query and path presence is checked locally; field types, enums and body field validation remain the API's responsibility. Path values are encoded as single segments; literal `.` and `..` values are rejected before transport. Query nulls are omitted, arrays use repeated parameters unless the schema specifies comma separation, and scalars accept strings, numbers and booleans.
 
 `DesearchResponse.data` contains decoded JSON, UTF-8 text for extraction and text/NDJSON responses, or null for an empty body. It also exposes `statusCode`, optional `costUsd` and `nextCursor` headers. Billing fields in JSON remain in `data`. Responses are buffered in memory. Use the underlying API directly for streaming or very large exports.
 
@@ -103,4 +103,4 @@ When updating the schema, fetch the public OpenAPI into `tool/openapi.json`, rec
 
 ## Sources and license
 
-MIT; see [LICENSE](LICENSE). Layout and method naming draw from [desearch.py at f03402db](https://github.com/Desearch-ai/desearch.py/tree/f03402dbf56cdca1cc2aa7f9939478d107cfe884) and [desearch.js at 43b4b745](https://github.com/Desearch-ai/desearch.js/tree/43b4b745fbb7eae8144135d9d718f15336321bf7). Their MIT attribution is retained. Existing endpoint aliases were taken from [sdk-generator configuration at d1fbaa2a](https://github.com/Desearch-ai/sdk-generator/blob/d1fbaa2ad9d28d68ceaf37abc65a53f41776c4c9/config_endpoints.yml); other names derive deterministically from OpenAPI operation IDs. This package uses its own deterministic generator, without an LLM generation dependency.
+MIT; see [LICENSE](LICENSE). Layout and method naming draw from [desearch.py at f03402db](https://github.com/Desearch-ai/desearch.py/tree/f03402dbf56cdca1cc2aa7f9939478d107cfe884) and [desearch.js at 43b4b745](https://github.com/Desearch-ai/desearch.js/tree/43b4b745fbb7eae8144135d9d718f15336321bf7). Their MIT attribution is retained. Existing endpoint aliases were taken from [sdk-generator configuration at d1fbaa2a](https://github.com/Desearch-ai/sdk-generator/blob/d1fbaa2ad9d28d68ceaf37abc65a53f41776c4c9/config/endpoints.yml); other names derive deterministically from OpenAPI operation IDs. This package uses its own deterministic generator, without an LLM generation dependency.

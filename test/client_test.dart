@@ -50,6 +50,56 @@ void main() {
   });
 
   test(
+    'dot path parameters are rejected before simple or nested route transport',
+    () async {
+      var calls = 0;
+      final client = Desearch(
+        apiKey: key,
+        httpClient: MockClient((_) async {
+          calls++;
+          return http.Response('{}', 200);
+        }),
+      );
+      try {
+        for (final operation in DesearchOperation.values.where(
+          (o) => o.pathParameters.isNotEmpty,
+        )) {
+          for (final parameter in operation.pathParameters) {
+            for (final dot in ['.', '..']) {
+              await expectLater(
+                client.request(
+                  operation,
+                  pathParameters: {
+                    for (final name in operation.pathParameters)
+                      name: name == parameter ? dot : 'sample',
+                  },
+                  query: {
+                    for (final name in operation.requiredQuery) name: 'sample',
+                  },
+                  body: operation.acceptsBody ? {} : null,
+                ),
+                throwsA(
+                  isA<DesearchException>()
+                      .having(
+                        (e) => e.message,
+                        'message',
+                        'Path parameters must not be dot segments.',
+                      )
+                      .having((e) => e.toString().contains(key), 'safe', false),
+                ),
+                reason: '${operation.name}: $parameter must reject $dot',
+              );
+            }
+          }
+        }
+        expect(calls, 0);
+      } finally {
+        client.close();
+      }
+    },
+  );
+
+  test(
     'path values cannot inject route or query; arrays repeat and null omits',
     () async {
       final operation = DesearchOperation.values.firstWhere(
