@@ -2,9 +2,17 @@
 
 A thin HTTP SDK for the [Desearch API](https://api.desearch.ai/docs). It preserves API field names and JSON response shapes and provides generated methods over one reusable HTTP client.
 
-Version 0.1.0 is a publication candidate. It has not been published to pub.dev. This source requires **Dart 3.14.1**, pinned exactly for reproducible generation and verification. Flutter and browser runtimes have not been verified.
+Version 0.1.0 requires **Dart 3.14.1**, pinned exactly for reproducible generation and verification. Flutter and browser runtimes have not been verified.
 
-## Local installation
+## Installation
+
+When version 0.1.0 is available on [pub.dev](https://pub.dev/packages/desearch), add it to your Dart application:
+
+```sh
+dart pub add desearch:^0.1.0
+```
+
+For local development, use a path dependency instead.
 
 In a Dart application next to this checkout, use a path dependency:
 
@@ -14,7 +22,7 @@ dependencies:
     path: ../desearch-dart
 ```
 
-Run `dart pub get` in the application. Registry installation instructions will be added after publication.
+Run `dart pub get` in the application.
 
 ## Search
 
@@ -103,4 +111,4 @@ When updating the schema, fetch the public OpenAPI into `tool/openapi.json`, rec
 
 ## Sources and license
 
-MIT; see [LICENSE](LICENSE). Layout and method naming draw from [desearch.py at f03402db](https://github.com/Desearch-ai/desearch.py/tree/f03402dbf56cdca1cc2aa7f9939478d107cfe884) and [desearch.js at 43b4b745](https://github.com/Desearch-ai/desearch.js/tree/43b4b745fbb7eae8144135d9d718f15336321bf7). Their MIT attribution is retained. Existing endpoint aliases were taken from [sdk-generator configuration at d1fbaa2a](https://github.com/Desearch-ai/sdk-generator/blob/d1fbaa2ad9d28d68ceaf37abc65a53f41776c4c9/config/endpoints.yml); other names derive deterministically from OpenAPI operation IDs. This package uses its own deterministic generator, without an LLM generation dependency.
+MIT; see [LICENSE](LICENSE). Layout and method naming draw from [desearch.py at f03402db](https://github.com/Desearch-ai/desearch.py/tree/f03402dbf56cdca1cc2aa7f9939478d107cfe884) and [desearch.js at 43b4b745](https://github.com/Desearch-ai/desearch.js/tree/43b4b745fbb7eae8144135d9d718f15336321bf7). Their MIT attribution is retained. Existing endpoint aliases were taken from `Desearch-ai/sdk-generator`, commit `d1fbaa2ad9d28d68ceaf37abc65a53f41776c4c9`, file `config/endpoints.yml`; other names derive deterministically from OpenAPI operation IDs. This package uses its own deterministic generator, without an LLM generation dependency.
