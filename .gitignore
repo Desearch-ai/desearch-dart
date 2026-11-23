@@ -1,0 +1,8 @@
+.dart_tool/
+pubspec.lock
+build/
+coverage/
+*.dill
+.env
+.env.*
+!tool/pubspec.lock

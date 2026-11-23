@@ -1,0 +1,13 @@
+name: desearch
+description: A thin Dart client for the Desearch API, with generated endpoint methods and explicit HTTP error handling.
+version: 0.1.0
+homepage: https://desearch.ai
+repository: https://github.com/Desearch-ai/desearch-dart
+environment:
+  sdk: '3.14.1'
+dependencies:
+  http: ^1.6.0
+dev_dependencies:
+  crypto: 3.0.7
+  lints: 6.0.0
+  test: 1.33.0

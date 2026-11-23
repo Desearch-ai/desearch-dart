@@ -1,0 +1,16 @@
+{
+  "GET /twitter": "xSearch",
+  "GET /twitter/post": "xPostById",
+  "GET /twitter/post/retweeters": "xPostRetweeters",
+  "GET /twitter/post/user": "xPostsByUser",
+  "GET /twitter/replies": "xUserReplies",
+  "GET /twitter/replies/post": "xPostReplies",
+  "GET /twitter/urls": "xPostsByUrls",
+  "GET /twitter/user/posts": "xUserPosts",
+  "GET /web": "webSearch",
+  "GET /web/crawl": "webCrawl",
+  "POST /desearch/ai/search": "aiSearch",
+  "POST /desearch/ai/search/links/twitter": "aiXLinksSearch",
+  "POST /desearch/ai/search/links/web": "aiWebLinksSearch",
+  "POST /search": "search"
+}
